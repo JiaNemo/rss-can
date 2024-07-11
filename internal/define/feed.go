@@ -24,6 +24,17 @@ type InfoItem struct {
 	Content     string `json:"content,omitempty"`
 }
 
+type InfoItemHQY struct {
+	ID          int    `json:"id,omitempty"`
+	Title       string `json:"title"`
+	Link        string `json:"url"`
+	Date        string `json:"publishDate"`
+	Author      string `json:"author,omitempty"`
+	Category    string `json:"catalogName,omitempty"`
+	Description string `json:"summary,omitempty"`
+	Content     string `json:"content,omitempty"`
+}
+
 const (
 	ConfigHookReadLink = "readlink"
 )
@@ -40,8 +51,12 @@ type PROP_ID struct {
 }
 
 type JavaScriptConfig struct {
-	Name         string  `json:"name"`
-	URL          string  `json:"URL"`
+	Name       string `json:"name"`
+	URL        string `json:"URL"`
+	OriginHost string `json:"OriginHost"`
+	Host       string `json:"Host"`
+	Logo       string `json:"Logo"`
+
 	Mode         string  `json:"Mode"`
 	File         string  //private field
 	Charset      string  `json:"Charset"`
@@ -54,23 +69,29 @@ type JavaScriptConfig struct {
 	IdByProp     PROP_ID `json:"IdByProp"`
 	Cookies      string  `json:"Cookies"`
 
-	ListContainer string `json:"ListContainer"`
-	Title         string `json:"Title"`
-	Author        string `json:"Author"`
-	Link          string `json:"Link"`
+	ListContainer string     `json:"ListContainer"`
+	Title         string     `json:"Title"`
+	Author        string     `json:"Author"`
+	Link          string     `json:"Link"`
+	DateTime      string     `json:"DateTime"`
+	DateTimeHook  ConfigHook `json:"DateTimeHook"`
+	CategoryHook  ConfigHook `json:"CategoryHook"`
+	Description   string     `json:"Description"`
 
-	DateTime     string     `json:"DateTime"`
-	DateTimeHook ConfigHook `json:"DateTimeHook"`
-
-	Category     string     `json:"Category"`
-	CategoryHook ConfigHook `json:"CategoryHook"`
-
-	Description     string     `json:"Description"`
 	DescriptionHook ConfigHook `json:"DescriptionHook"`
+	Content         string     `json:"Content"`
 
-	Content     string     `json:"Content"`
 	ContentHook ConfigHook `json:"ContentHook"`
+	Pager       string     `json:"Pager"`
 
-	Pager      string `json:"Pager"`
-	PagerLimit int    `json:"PagerLimit"`
+	PagerLimit int `json:"PagerLimit"`
+
+	TenantId        string `json:"TenantId"`
+	Category        string `json:"Category"`
+	CataLogId       string `json:"CataLogId"`
+	PageSize        string `json:"PageSize"`
+	MaxPageCount    string `json:"MaxPageCount"`
+	CopyRight       string `json:"CopyRight"`
+	SubTitle        string `json:"SubTitle"`
+	MainDescription string `json:"MainDescription"`
 }

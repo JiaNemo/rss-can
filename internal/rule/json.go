@@ -21,7 +21,7 @@ func ParseConfigFromJSON(str string, rule define.RuleCache) (define.JavaScriptCo
 	}
 
 	modeInRule := strings.ToLower(config.Mode)
-	if !fn.IsStrInArray([]string{define.PARSE_MODE_SSR, define.PARSE_MODE_CSR, define.PARSE_MODE_MIX}, modeInRule) {
+	if !fn.IsStrInArray([]string{define.PARSE_MODE_SSR, define.PARSE_MODE_CSR, define.PARSE_MODE_MIX, define.PARSE_MODE_SSR_HQY}, modeInRule) {
 		config.Mode = define.DEFAULT_PARSE_MODE
 	}
 	return config, nil
@@ -51,6 +51,8 @@ func GetWebsiteDataWithConfig(config define.JavaScriptConfig) (result define.Bod
 			proxy = config.Proxy
 		}
 		return parser.GetDataAndConfigByMix(config, container, proxy)
+	case define.PARSE_MODE_SSR_HQY:
+		return parser.GetDataAndConfigBySSRHQY(config)
 	}
 
 	// TODO handle remote mode(api) ...

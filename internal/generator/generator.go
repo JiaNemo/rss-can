@@ -17,13 +17,37 @@ func GenerateFeedsByType(config define.JavaScriptConfig, data define.BodyParsed,
 		Created: now,
 	}
 
-	if config.URL != "" {
-		rssFeed.Link = &feeds.Link{Href: config.URL}
+	if config.Host != "" {
+		rssFeed.Link = &feeds.Link{Href: config.Host}
+	}
+
+	if config.Logo != "" {
+		rssFeed.Image = &feeds.Image{
+			Url:    config.Logo,
+			Title:  config.Name,
+			Link:   config.Host,
+			Width:  200,
+			Height: 200,
+		}
 	}
 
 	if config.Name != "" {
 		rssFeed.Title = config.Name
 	}
+
+	if config.CopyRight != "" {
+		rssFeed.Copyright = config.CopyRight
+	}
+
+	if config.SubTitle != "" {
+		rssFeed.Subtitle = config.SubTitle
+	}
+
+	if config.MainDescription != "" {
+		rssFeed.Description = config.MainDescription
+	}
+
+	logger.Instance.Infof("Frank len data body : %d", len(data.Body))
 
 	for _, data := range data.Body {
 		feedItem := feeds.Item{
@@ -69,6 +93,8 @@ func GenerateFeedsByType(config define.JavaScriptConfig, data define.BodyParsed,
 		logger.Instance.Errorf("Generate feed failed: %v", err)
 		return ""
 	}
+
+	logger.Instance.Infof("Frank data count : %d", len(rssFeed.Items))
 
 	return rss
 }

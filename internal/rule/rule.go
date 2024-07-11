@@ -48,6 +48,9 @@ func GenerateConfigByRule(rule define.RuleCache) (config define.JavaScriptConfig
 
 	config.Name = strings.TrimSpace(config.Name)
 	config.URL = strings.TrimSpace(config.URL)
+	config.Host = strings.TrimSpace(config.Host)
+	config.Logo = strings.TrimSpace(config.Logo)
+
 	config.Mode = strings.TrimSpace(config.Mode)
 	config.File = strings.TrimSpace(config.File)
 	config.Charset = strings.TrimSpace(config.Charset)
@@ -78,6 +81,15 @@ func GenerateConfigByRule(rule define.RuleCache) (config define.JavaScriptConfig
 	config.ContentHook.Action = strings.TrimSpace(config.ContentHook.Action)
 	config.ContentHook.Object = strings.TrimSpace(config.ContentHook.Object)
 	config.ContentHook.URL = strings.TrimSpace(config.ContentHook.URL)
+
+	config.TenantId = strings.TrimSpace(config.TenantId)
+	config.CataLogId = strings.TrimSpace(config.CataLogId)
+	config.PageSize = strings.TrimSpace(config.PageSize)
+	config.MaxPageCount = strings.TrimSpace(config.MaxPageCount)
+	config.CopyRight = strings.TrimSpace(config.CopyRight)
+
+	config.SubTitle = strings.TrimSpace(config.SubTitle)
+	config.MainDescription = strings.TrimSpace(config.MainDescription)
 
 	return config, err
 }
